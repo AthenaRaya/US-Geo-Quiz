@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>US Quiz</title>
+  
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function(){
+      let score = 0; // global var
+      //event listeners
+      $("button").on("click",gradeQuiz);
+      
+      //function
+      function isFormValid(){
+        let isValid= true;
+        if($("#q1").val() == ""){
+            isValid = false;
+            $("#validationFdbK").html("Question 1 was not answered");
+        }
+        return isValid;
+      }
+      
+      function rightAnswer(index){
+        $(`#q${index}Feedback`).html("Correct!");
+        $(`#q${index}Feedback`).attr("Class","bg-success text-white");
+        $(`#markImg${index}`).html("<img scr ='img/checkmark.png'>");
+        score += 20;
+      }
+      function wrongAnswer(index){
+        $(`#q${index}Feedback`).html("Incorrect!");
+        $(`#q${index}Feedback`).attr("Class","bg-warnings text-white");
+        $(`#markImg${index}`).html("<img scr ='img/xmark.png'>");
+        
+      }
+  
+      function gradeQuiz(){
+        
+        $("#validationFdbK").html(""); //resets vaildation feedback
+        
+        if(!isFormValid()){
+          return;
+        }
+        //var
+        let q1Response =$("#q1").val().toLowerCase();
+        let q2Response =$("#q2").val();
+        let q3Response =$('#cbx:checked').val();
+        
+        
+        //Question 1
+        if(q1Response =="sacramento"){
+          rightAnswer(1);
+        }else{
+          wrongAnswer(1)
+        }
+       //Question2
+        if(q2Response =="mo"){
+          rightAnswer(2);
+        }else{
+          wrongAnswer(2);
+        }
+         $("#totalScore").html(`Total Score:${score}`);
+      
+      //Question3
+      if($("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked")
+        && !$("#Jackson").is(":checked")&& !$("#Franklin").is(":checked")){
+                rightAnswer(3);
+            }else{
+                  wrongAnswer(3);
+               }
+                  
+      //Question4
+      //Question5
+      //Question6
+      //Question7
+      //Question8
+      
+    }
+       }) //ready 
+    
+  </script>
+</head>
+<body class="text-center">
+   <h1 class="jumbotron">
+     US Geography Quiz
+  </h1>
+  <h3><span id="markImg1"></span>What is the Capitial of Californa? </h3>
+  <input type="text" id="q1">
+  <br><br> 
+  <div id="q1Feedback"></div>
+  <br>
+  <h3><span id ="markImg2"></span>What is the longes river?</h3>
+  <select id="q2">
+     <option value= "">Select One</option>
+     <option value= "ms">Mississippi</option>
+     <option value= "mo">Missouri</option>
+     <option value= "co">Colorado</option>
+     <option value= "de">Delaware</option>
+  </select>
+  <br><br>
+  <div id="q2Feedback"></div>
+ <br>
+  
+  <h3><span id="markImg3"></span>What Presidents are carved inot mount Rushmore?</h3>
+  <input type="checkbox" id="cbx" value ="jackson"> <label for="jackson">A.Jackson</label>
+  <input type="checkbox" id="cbx" value = "Franklin"> <label for="Franklin">B.Franklin</label>
+  <input type="checkbox" id="cbx" value = "Jefferson"> <label for="Jefferson">T.Jefferson</label>
+  <input type="checkbox" id="cbx" value = "Roosevelt"> <label for="Roosevelt">T.Roosevelt</label>
+  <br><br>
+  <div id="q3Feedback"></div>
+  <br> 
+
+  
+   <h3 id="validationFdbK" class="bg-danger text-white"></h3>
+  <button class ="btn btn-outline-success">Submit Quiz</button>
+  <br>
+  <h2 id="totalScore" class ="text-info"></h2>
+</body>
+</html>
