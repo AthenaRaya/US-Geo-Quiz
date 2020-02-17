@@ -7,121 +7,13 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
-  <script>
-    $(document).ready(function(){
-     
-      let score = 0; // global var
-      
-     
-      //event listeners
-      //"submit Quiz" button
-      $("button").on("click",gradeQuiz);
-      //Question5 images
-      $("q5Choice").on("click",function(){
-               $(".q5Choice").css("background","");
-               $(this).css("background","rgb(255,255,0)");
-      });
-      
-      displayQ4choices();
-      
-     function displayQ4choices(){
-        let q4ChoicesArray=["Maine","Rhode Island", "Maryland","Delaware"];
-        q4ChoicesArray = _.shuffle(q4ChoicesArray);
-        
-        for(let i = 0; i <q4ChoicesArray.length;i++){
-          $("#q4Choices").append(`<input type="radio" name="q4"
-          id="${q4ChoicesArray[i]}" value="${q4ChoicesArray[i]}"> <label 
-          for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
-          }
-          
-      }
-      
-      //function
-      function isFormValid(){
-        let isValid= true;
-        if($("#q1").val() == ""){
-            isValid = false;
-            $("#validationFdbK").html("Question 1 was not answered");
-        }
-        return isValid;
-      }
-      
-      function rightAnswer(index){
-        $(`#q${index}Feedback`).html("Correct!");
-        $(`#q${index}Feedback`).attr("class","bg-success text-white");
-        $(`#markImg${index}`).html("<img scr ='img/checkmark.png'>");
-        score += 20;
-      }
-      function wrongAnswer(index){
-        $(`#q${index}Feedback`).html("Incorrect!");
-        $(`#q${index}Feedback`).attr("class","bg-warnings text-white");
-        $(`#markImg${index}`).html("<img scr ='img/xmark.png'>");
-        
-      }
+ 
   
-      function gradeQuiz(){
-        
-        $("#validationFdbK").html(""); //resets vaildation feedback
-        
-        if(!isFormValid()){
-            return;
-         }
-        //var
-        let q1Response =$("#q1").val().toLowerCase();
-        let q2Response =$("#q2").val();
-        let q4Response =$("input[name=q4]:checkd").val();
-        
-        $('#cbx:checked').val();
-        
-        
-        //Question 1
-        if(q1Response =="sacramento"){
-          rightAnswer(1);
-        }else{
-          wrongAnswer(1)
-        }
-       //Question2
-        if(q2Response =="mo"){
-          rightAnswer(2);
-        }else{
-          wrongAnswer(2);
-        }
-         $("#totalScore").html(`Total Score:${score}`);
-      
-      //Question3
-      if ($("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked")
-        && !$("#Jackson").is(":checked")&& !$("#Franklin").is(":checked")){
-                rightAnswer(3);
-            }else{
-                  wrongAnswer(3);
-               }
-                  
-      //Question4
-        if(q4Response =="Rhode Island"){
-          rightAnswer(4);
-        }else{
-          wrongAnswer(4);
-        }
-      //Question5
-        if($("#seal2").css("background-color")=="rgb(255,255,0)") {
-          rightAnswer(5);
-        }else{
-          wrongAnswer(5);
-        }
-        
-      //Question6
-      //Question7
-      //Question8
-      
-    }
-       }) //ready 
-    
-  </script>
-</head>
-<body class="text-center">
-   <h1 class="jumbotron">
-     US Geography Quiz
-  </h1>
+ </head>
+  <body class="text-center">
+      <h1 class="jumbotron">
+       US Geography Quiz
+      </h1>
   <h3><span id="markImg1"></span>What is the Capitial of Californa? </h3>
   <input type="text" id="q1">
   <br><br> 
@@ -139,9 +31,11 @@
   <br><br>
   <div id="q2Feedback"></div>
  <br>
+ 
+
   
-  <h3><span id="markImg3"></span>What Presidents are carved inot mount Rushmore?</h3>
-  <input type="checkbox" id="jackson" > <label for="jackson">A.Jackson</label>
+  <h3><span id="markImg3"></span>What Presidents are carved into mount Rushmore?</h3>
+  <input type="checkbox" id="Jackson" > <label for="Jackson">A.Jackson</label>
   <input type="checkbox" id="Franklin"> <label for="Franklin">B.Franklin</label>
   <input type="checkbox" id="Jefferson"> <label for="Jefferson">T.Jefferson</label>
   <input type="checkbox" id="Roosevelt"> <label for="Roosevelt">T.Roosevelt</label>
@@ -161,12 +55,40 @@
   <div id ="q5Feedback"></div>
   <br><br> 
   
-  <h3><span id ="markImg6"></span>Question 6</h3>
-  <h3><span id ="markImg7"></span>Question7</h3>
-  <h3><span id ="markImg8"></span>Queston8</h3>
+  <h3><span id ="markImg6"></span>Which is the largest populous state in the U.S.</h3>
+  
+  <input type="checkbox" id="Newyork" > <label for="Newyork">Newyork</label>
+  <input type="checkbox" id="Texas"> <label for="Texas">Texas</label>
+  <input type="checkbox" id="California"> <label for="California">Californa</label>
+  <input type="checkbox" id="Flordia "> <label for="Flordia">Flordia</label>
+  <br><br>
+  <div id="q6Feedback"></div>
+  <br>
+  
+   <h3><span id="markImg7"></span>How many states does the USA have? </h3>
+  <input type="text" id="q7">
+  <br><br> 
+  <div id="q7Feedback"></div>
+  <br>
+  
+  <h3><span id ="markIm8"></span>Which mountain summit is the largest in the USA?</h3>
+  <select id="q8">
+     <option value= "">Select One</option>
+     <option value= "d">Denali</option>
+     <option value= "mw">Mount Whitney</option>
+     <option value= "mr">Mount Rainer</option>
+     <option value= "mnw">Mount Washington</option>
+  </select>
+  <br><br>
+  <div id="q8Feedback"></div>
+ <br>
+  
+  
    <h3 id="validationFdbK" class="bg-danger text-white"></h3>
   <button class ="btn btn-outline-success">Submit Quiz</button>
   <br>
   <h2 id="totalScore" class ="text-info"></h2>
+  <h3 id="totalAttempts" class = "text-info"></h3>
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
