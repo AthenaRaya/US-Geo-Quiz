@@ -11,7 +11,7 @@
       $(".q5Choice").on("click",function(){
          
          $(".q5Choice").css("background","");
-         $(this).css("background","rgb(255,255,0)");
+         $(this).css("background","rgb(255, 255, 0)");
       });
       
       
@@ -122,7 +122,7 @@
         
         
       //Question5
-        if($("#seal2").css("background-color") == "rgb(255,255,0)") {
+        if($("#seal2").css("background-color") == "rgb(255, 255, 0)") {
           rightAnswer(5);
           score = score + 12.50
         }else{
