@@ -2,7 +2,7 @@
     
  
    
-      let score = 0; // global var
+      var score = 0; // global var
       let attempts = localStorage.getItem("total_attempts");
      
       $("button").on("click",gradeQuiz);
@@ -42,7 +42,7 @@
         }
         return isValid;
       }
-      
+     
       function rightAnswer(index){
         $(`#q${index}Feedback`).html("Correct!");
         $(`#q${index}Feedback`).attr("class","bg-success text-white");
@@ -50,7 +50,7 @@
        
       }
       function wrongAnswer(index){
-        $(`#q${index}Feedback`).html("Incorrect!");
+        $(`#q${index}Feedback`).html("Incorrect!111");
         $(`#q${index}Feedback`).attr("class","bg-warnings text-white");
         $(`#markImg${index}`).html("<img scr ='img/xmark.png'>");
         
@@ -67,7 +67,8 @@
             return;
          }
          
-        //var
+       
+        score = 0
         let q1Response =$("#q1").val().toLowerCase();
         let q2Response =$("#q2").val();
         let q3Response =$("#markImg3").val()
@@ -81,7 +82,7 @@
         
         
         //Question 1
-        if(q1Response =="sacramento"){
+        if(q1Response == "sacramento" ){
           rightAnswer(1);
           score = score + 12.50
         }else{
