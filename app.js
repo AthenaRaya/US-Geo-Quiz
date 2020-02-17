@@ -50,7 +50,7 @@
        
       }
       function wrongAnswer(index){
-        $(`#q${index}Feedback`).html("Incorrect!111");
+        $(`#q${index}Feedback`).html("Incorrect!");
         $(`#q${index}Feedback`).attr("class","bg-warnings text-white");
         $(`#markImg${index}`).html("<img scr ='img/xmark.png'>");
         
